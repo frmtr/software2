@@ -1,9 +1,9 @@
 package forest;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
@@ -28,6 +28,8 @@ public class ForestView extends JPanel{
 	 */
 	private Point offset;
 
+	private Integer leafAmount;
+	
 	/**
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、コントローラを作り、モデルとビューを設定し、スクロール量を(0, 0)に設定する。
@@ -44,6 +46,7 @@ public class ForestView extends JPanel{
 		forestController.setForestModel(forestModel);
 		forestController.setForestView(this);
 		offset = new Point(0, 0);
+		leafAmount = new Integer(0);
 		return;
 	}
 
@@ -64,6 +67,7 @@ public class ForestView extends JPanel{
 		forestController.setForestModel(forestModel);
 		forestController.setForestView(this);
 		offset = new Point(0, 0);
+		leafAmount = new Integer(0);
 		return;
 	}
 
@@ -80,12 +84,56 @@ public class ForestView extends JPanel{
 		aGraphics.setColor(Color.WHITE);
 		aGraphics.fillRect(0, 0, width, height);
 		if (forestModel == null) { return; }
-		BufferedImage picture = forestModel.picture();
-		//if (picture == null) { return; }
-		aGraphics.drawImage(picture, offset.x, offset.y, null);
 		aGraphics.setColor(Color.RED);
 		aGraphics.drawRect(300- offset.x,300- offset.y,30,30);
+		//aGraphics.drawString("aho",300- offset.x,300- offset.y);
+
+		displayForest(aGraphics);
+
 		return;
+	}
+
+	public void displayForest(Graphics aGraphics){
+		
+		for(Node node :forestModel.getNodes() ){
+			//根ノードを最初に描画
+			if(node.getParents().size() == 0){  
+				searchChildrenNodes(aGraphics,node,50);
+				
+			}
+		}
+		/*
+		for(int i = 0; i< forestModel.getNodes().size();i++){
+			if(forestModel.getNodes().get(i).getParents().size() == 0){
+				searchChildrenNodes(aGraphics,node,50);
+			}
+		}*/
+	}
+
+	public void searchChildrenNodes(Graphics aGraphics,Node node,int distanceX){
+		
+		int width = node.getName().length()+10;
+		int height = 15;
+		distanceX = distanceX + width + 50;
+		
+		if(node.getChildren().size() == 0){  setLeafAmount(getLeafAmount()+1);}
+		
+		int leaf = getLeafAmount()*20;
+		//ノードを表示
+		displayNode(aGraphics,node,distanceX,leaf,width,height);
+		//子ノードを探索
+		for (int index = 0 ; index < node.getChildren().size() ; index++)
+		{
+			searchChildrenNodes(aGraphics,node.getChildren().get(index),distanceX);
+		}
+	}
+	
+	public void displayNode(Graphics aGraphics,Node node,Integer x,Integer y,Integer width,Integer height){
+		Font font1 = new Font("Arial",Font.PLAIN,12);
+		aGraphics.setFont(font1);
+		aGraphics.setColor(Color.BLACK);
+		aGraphics.drawString(node.getName(),x,y);
+		aGraphics.drawRect(x,y-height,width,height);
 	}
 
 	/**
@@ -153,6 +201,14 @@ public class ForestView extends JPanel{
 	{
 		this.repaint(0, 0, this.getWidth(), this.getHeight());
 		return;
+	}
+
+	public Integer getLeafAmount() {
+		return leafAmount;
+	}
+
+	public void setLeafAmount(Integer leafAmount) {
+		this.leafAmount = leafAmount;
 	}
 
 }

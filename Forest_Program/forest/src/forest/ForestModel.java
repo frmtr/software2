@@ -1,7 +1,11 @@
 package forest;
 
-import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -13,22 +17,27 @@ public class ForestModel {
 	 */
 	protected ArrayList<ForestView> dependents;
 
-	/**
-	 * 内容物として画像を束縛する。
-	 * 良好（2010年7月25日）
-	 */
-	private BufferedImage picture;
+	private File textFile;
+
+	private ArrayList<Node> nodes;
 
 	/**
 	 * インスタンスを生成して初期化して応答する。
 	 * 良好（2010年7月25日）
+	 * @throws FileNotFoundException
 	 */
-	public ForestModel(File aFile)
+	public ForestModel(File aFile) throws FileNotFoundException
 	{
 		super();
-		this.initialize();
+		//this.initialize(aFile);
+		dependents = new ArrayList<ForestView>();
+		nodes = new ArrayList<Node>();
+		this.readFile(aFile);
+
 		return;
 	}
+
+
 
 	/**
 	 * 指定されたビューを依存物に設定する。
@@ -59,43 +68,115 @@ public class ForestModel {
 
 	/**
 	 * 初期化する。
-	 * 
+	 *
 	 */
-	private void initialize()
+	/*
+	private void initialize(File aFile)
 	{
 		dependents = new ArrayList<ForestView>();
-		picture = null;
+		setTextFile(aFile);
 		return;
 	}
+	*/
+
+	public void readFile(File aFile) throws FileNotFoundException{
+
+		FileInputStream fi = new FileInputStream(aFile);
+		InputStreamReader is = new InputStreamReader(fi);
+    	BufferedReader br = new BufferedReader(is);
+		try {
+	    	//読み込み行
+    		String line;
+
+    		//処理するデータの内容を保管
+    		String currentReadContext = null;
+
+    		//1行ずつ読み込みを行う
+    		while ((line = br.readLine()) != null) {
+
+    			//カンマで分割した内容を配列に格納する
+    			//String[] data = line.split(",");
+
+    	        //現在読み込んでいるデータを判別//次の行へ
+    	        if(line.equals("trees:")){ currentReadContext = "trees"; continue;}
+    	        if(line.equals("nodes:")){ currentReadContext = "nodes"; continue;}
+    	        if(line.equals("branches:")){ currentReadContext = "branches"; continue;}
+
+    	        //treeからの情報を取得
+    	        //if(currentReadContext == "trees"){
+    	        	//trees(line);
+    	        //}
+    	        if(currentReadContext.equals("nodes")){ node(line); }
+    	        if(currentReadContext.equals("branches")){ branches(line); }
+
+    		}
+
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public void node(String line){
+
+		String[] data = line.split(", ");
+		getNodes().add(new Node( Integer.parseInt(data[0]),data[1]));
+		return;
+	}
+
+	public void branches(String line){
+		String[] data = line.split(", ");
+		Integer parentNodeNumber = Integer.parseInt(data[0]);
+		Integer childNodeNumber = Integer.parseInt(data[1]);
+
+		Node parentNode = getNodes().get(parentNodeNumber - 1);
+		Node childNode =  getNodes().get(childNodeNumber - 1);
+
+		//データ、左側のノードに、子ノードを割り当てる
+		parentNode.getChildren().add(childNode);
+		//データ、右側のノードに、親ノードを割り当てる
+		childNode.getParents().add(parentNode);
+		return;
+	}
+
 
 	/**
 	 * 最初に読み込まれる
 	 *
 	 */
 	public void animate(){
-		changed();
-	}
 
-	/**
-	 * 画像（モデルの内容物）を応答する。
-	 * @return このモデルのpictureフィールドに格納されている画像
-	 * 
-	 */
-	public BufferedImage picture()
-	{
-		return picture;
+		/*
+		 * データ解析　
+		 * ノードを取得
+		 * ツリー構造化する
+		 * それをViewに渡す
+		 */
+		
+		for(Node node :getNodes() ){
+			//根ノードを最初に描画
+			if(node.getParents().size() == 0){
+				print(node,-1);
+			}
+		}
+		//Viewに送る
+		//changed();
 	}
-
-	/**
-	 * 画像（モデルの内容物）を設定する。
-	 * @param anImage このモデルのpictureフィールドに格納する画像
-	 * 
-	 */
-	public void picture(BufferedImage anImage)
-	{
-		picture = anImage;
-		return;
+	
+	public void print(Node node,Integer time){
+		
+		time = time + 1;
+		String branch = "+ ";
+		for(int i = 0; i < time; i++){ branch = branch + "- " ;}
+		
+		System.out.println(branch+node.getName());
+		
+		for(Node child : node.getChildren()){
+			
+			print(child,time);
+			
+		}
 	}
+	
 
 	/**
 	 * このインスタンスを文字列にして応答する。
@@ -106,10 +187,36 @@ public class ForestModel {
 		StringBuffer aBuffer = new StringBuffer();
 		Class<?> aClass = this.getClass();
 		aBuffer.append(aClass.getName());
+		/*
 		aBuffer.append("[picture=");
 		aBuffer.append(picture);
 		aBuffer.append("]");
+		*/
 		return aBuffer.toString();
+	}
+
+
+
+	public File getTextFile() {
+		return textFile;
+	}
+
+
+
+	public void setTextFile(File textFile) {
+		this.textFile = textFile;
+	}
+
+
+
+	public ArrayList<Node> getNodes() {
+		return nodes;
+	}
+
+
+
+	public void setNodes(ArrayList<Node> nodes) {
+		this.nodes = nodes;
 	}
 
 }
