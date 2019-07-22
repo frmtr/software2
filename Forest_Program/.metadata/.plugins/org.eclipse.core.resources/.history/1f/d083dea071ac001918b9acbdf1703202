@@ -29,7 +29,7 @@ public class ForestView extends JPanel{
 	private Point offset;
 
 	private Integer leafAmount;
-
+	
 	/**
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、コントローラを作り、モデルとビューを設定し、スクロール量を(0, 0)に設定する。
@@ -84,6 +84,9 @@ public class ForestView extends JPanel{
 		aGraphics.setColor(Color.WHITE);
 		aGraphics.fillRect(0, 0, width, height);
 		if (forestModel == null) { return; }
+		aGraphics.setColor(Color.RED);
+		aGraphics.drawRect(300- offset.x,300- offset.y,30,30);
+		//aGraphics.drawString("aho",300- offset.x,300- offset.y);
 
 		displayForest(aGraphics);
 
@@ -95,15 +98,22 @@ public class ForestView extends JPanel{
 		int y = 50;
 		int height = 15;
 		for(Node node :forestModel.getNodes() ){
-
+			
 			int width =  aGraphics.getFontMetrics().stringWidth(node.getName());
-
+			
 			Font font1 = new Font("Arial",Font.PLAIN,12);
 			aGraphics.setFont(font1);
 			aGraphics.setColor(Color.BLACK);
-			aGraphics.drawString(node.getName(),x- offset.x,y-3- offset.y);
+			aGraphics.drawString(node.getName(),x- offset.x,y+2- offset.y);
 			aGraphics.drawRect(x- offset.x,y-height- offset.y,width,height);
 			y = y + 20;
+			//根ノードを最初に描画
+			/*
+			if(node.getParents().size() == 0){  
+				searchChildrenNodes(aGraphics,node,50);
+				
+			}
+			*/
 		}
 		/*
 		for(int i = 0; i< forestModel.getNodes().size();i++){
@@ -114,13 +124,13 @@ public class ForestView extends JPanel{
 	}
 	/*
 	public void searchChildrenNodes(Graphics aGraphics,Node node,int distanceX){
-
+		
 		int width = node.getName().length()+10;
 		int height = 15;
 		distanceX = distanceX + width + 50;
-
+		
 		if(node.getChildren().size() == 0){  setLeafAmount(getLeafAmount()+1);}
-
+		
 		int leaf = getLeafAmount()*20;
 		//ノードを表示
 		displayNode(aGraphics,node,distanceX,leaf,width,height);
@@ -130,7 +140,7 @@ public class ForestView extends JPanel{
 			searchChildrenNodes(aGraphics,node.getChildren().get(index),distanceX);
 		}
 	}
-
+	
 	public void displayNode(Graphics aGraphics,Node node,Integer x,Integer y,Integer width,Integer height){
 		Font font1 = new Font("Arial",Font.PLAIN,12);
 		aGraphics.setFont(font1);

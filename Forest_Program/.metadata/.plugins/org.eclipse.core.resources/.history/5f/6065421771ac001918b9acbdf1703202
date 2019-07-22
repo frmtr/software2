@@ -176,10 +176,6 @@ public class ForestModel {
 			
 		}
 	}
-	public void pointCalc(){
-	
-	// int w = g.getFontMetrics().stringWidth(msg); 文字列の幅を入手できる
-	}
 	
 
 	/**
