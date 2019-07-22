@@ -2,6 +2,7 @@ package forest;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.JFrame;
 
@@ -20,8 +21,9 @@ public class Example extends Object
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/forest.txt<br>
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/semilattice.txt<br>
 	 * @param arguments 樹状整列データファイルを第1引数とする引数文字列群
+	 * @throws FileNotFoundException
 	 */
-	public static void main(String[] arguments)
+	public static void main(String[] arguments) throws FileNotFoundException
 	{
 		// 引数が無い（樹状整列データファイルの在り処がわからない）をチェックする。
 
@@ -33,6 +35,7 @@ public class Example extends Object
 
 
 		// 第1引数で指定された樹状整列データファイルの存在をチェックする。
+		System.out.println(arguments[0]);
 		File aFile = new File(arguments[0]);
 
 		if (!(aFile.exists()))
