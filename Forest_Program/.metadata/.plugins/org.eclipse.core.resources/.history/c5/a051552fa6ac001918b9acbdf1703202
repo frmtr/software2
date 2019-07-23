@@ -64,4 +64,6 @@ public class Node extends JFrame{
 	public int getTextWidth(){
 		return this.textWidth;
 	}
+	}
+
 }

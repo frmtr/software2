@@ -1,6 +1,7 @@
 package forest;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -61,7 +62,5 @@ public class Node extends JFrame{
 	public void setPoint(Point aPoint){
 		this.point = aPoint;
 	}
-	public int getTextWidth(){
-		return this.textWidth;
-	}
+
 }

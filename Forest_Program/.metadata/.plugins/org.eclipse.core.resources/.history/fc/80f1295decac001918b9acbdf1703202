@@ -198,7 +198,7 @@ public class ForestModel {
 			y = 30 + 20*leaf;
 		}
 		else{
-			x = (int)node.getParents().get(0).getPoint().getX() + node.getParents().get(0).getTextWidth()+ 10 + distance;
+			x = (int)node.getParents().get(0).getPoint().getX() + node.getTextWidth() + distance;
 			y = (int)node.getParents().get(0).getPoint().getY() + leaf * height;
 		}
 		aPoint = new Point(x,y);

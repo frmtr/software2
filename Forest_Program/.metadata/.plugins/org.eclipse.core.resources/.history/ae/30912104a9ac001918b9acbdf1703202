@@ -21,12 +21,6 @@ public class ForestModel {
 	private File textFile;
 
 	private ArrayList<Node> nodes;
-	
-	public int leaf = 0;
-	
-	public final int height = 20;
-	
-	public final int distance = 30;
 
 	/**
 	 * インスタンスを生成して初期化して応答する。
@@ -129,7 +123,7 @@ public class ForestModel {
 
 		//初期座標
 		int x = 10;
-		int y = 30 + height*getNodes().size();
+		int y = 30 + 20*getNodes().size();
 		Point aPoint = new Point(x,y);
 
 		getNodes().add(new Node( Integer.parseInt(data[0]),data[1],aPoint));
@@ -174,7 +168,7 @@ public class ForestModel {
 		for(Node node :getNodes() ){
 			//根ノードを最初に描画
 			if(node.getParents().size() == 0){
-				move(node);
+				move(node,-1);
 			}
 		}
 		
@@ -183,38 +177,20 @@ public class ForestModel {
 		//changed();
 	}
 
-	public void move(Node node){
-		
-		
-		int x;//parentX()  + distance
-		int y;//parent Y + height * leaf 
-		Point aPoint;
-		
-		
-		
-		if(node.getParents().size() == 0){ 
-			//親ノードがない時、根ノード
-			x = 200;
-			y = 30 + 20*leaf;
-		}
-		else{
-			x = (int)node.getParents().get(0).getPoint().getX() + node.getParents().get(0).getTextWidth()+ 10 + distance;
-			y = (int)node.getParents().get(0).getPoint().getY() + leaf * height;
-		}
-		aPoint = new Point(x,y);
+	public void move(Node node,Integer time){
+		int distance = 30;
+		int height = 20;
+		//回数
+		time = time + 1;
+		//自分を移動
+		Point aPoint = new Point(node.getX() + distance*time + 200,  node.getY() + height*time);
 		node.setPoint(aPoint);
-		
-		//葉ノードとき加算
-		if(node.getChildren().size()==0){
-			leaf = leaf + 1;
-		}
-		
 		changed();
 		//子ノードがあれば移動
 		
 		for(Node child : node.getChildren()){
 
-			move(child);
+			move(child,time);
 
 		}
 		

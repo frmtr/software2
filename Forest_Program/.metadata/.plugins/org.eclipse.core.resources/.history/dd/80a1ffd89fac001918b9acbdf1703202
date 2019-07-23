@@ -1,6 +1,7 @@
 package forest;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -28,8 +29,10 @@ public class Node extends JFrame{
 		this.point = aPoint;
 
 		//描画時の文字列の長さ
+		Graphics aGraphics = getGraphics();
 		Font font1 = new Font("Arial",Font.PLAIN,12);
-		this.textWidth = getFontMetrics(font1).stringWidth(aString);
+		aGraphics.setFont(font1);
+		this.textWidth = aGraphics.getFontMetrics().stringWidth(aString);
 
 	}
 
@@ -61,7 +64,5 @@ public class Node extends JFrame{
 	public void setPoint(Point aPoint){
 		this.point = aPoint;
 	}
-	public int getTextWidth(){
-		return this.textWidth;
-	}
+
 }

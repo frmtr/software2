@@ -1,24 +1,18 @@
 package forest;
 
-import java.awt.Font;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
-public class Node extends JFrame{
+public class Node {
 
 	private String nodeName;
 	private Integer nodeNumber;
 
 	ArrayList<Node> parents;
 	ArrayList<Node> children;
-	/**
-	 * 座標
-	 */
+
 	Point point;
 
-	int textWidth;
 
 	public Node(Integer aInteger,String aString,Point aPoint){
 		this.nodeName = aString;
@@ -26,11 +20,6 @@ public class Node extends JFrame{
 		this.parents = new ArrayList<Node>();
 		this.children = new ArrayList<Node>();
 		this.point = aPoint;
-
-		//描画時の文字列の長さ
-		Font font1 = new Font("Arial",Font.PLAIN,12);
-		this.textWidth = getFontMetrics(font1).stringWidth(aString);
-
 	}
 
 	public String getName(){
@@ -61,7 +50,5 @@ public class Node extends JFrame{
 	public void setPoint(Point aPoint){
 		this.point = aPoint;
 	}
-	public int getTextWidth(){
-		return this.textWidth;
-	}
+
 }

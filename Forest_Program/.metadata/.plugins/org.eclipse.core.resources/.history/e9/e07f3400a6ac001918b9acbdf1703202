@@ -61,7 +61,5 @@ public class Node extends JFrame{
 	public void setPoint(Point aPoint){
 		this.point = aPoint;
 	}
-	public int getTextWidth(){
-		return this.textWidth;
-	}
+
 }

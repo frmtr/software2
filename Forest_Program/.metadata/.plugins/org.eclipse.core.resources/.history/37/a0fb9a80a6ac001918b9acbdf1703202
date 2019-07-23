@@ -91,34 +91,26 @@ public class ForestView extends JPanel{
 	}
 
 	public void displayForest(Graphics aGraphics){
+		int x = 50;
+		int y = 50;
 		int height = 15;
 		for(Node node :forestModel.getNodes() ){
 
-			//int width =  aGraphics.getFontMetrics().stringWidth(node.getName());
+			int width =  aGraphics.getFontMetrics().stringWidth(node.getName());
 
 			Font font1 = new Font("Arial",Font.PLAIN,12);
 			aGraphics.setFont(font1);
 			aGraphics.setColor(Color.BLACK);
-			aGraphics.drawString(node.getName(),
-								(int)node.getPoint().getX()- offset.x,
-								(int)node.getPoint().getY()-3- offset.y);
-			aGraphics.drawRect((int)node.getPoint().getX()- offset.x,
-								(int)node.getPoint().getY()-height- offset.y,
-								node.getTextWidth(),height);
-			//親ノードと子ノードを線で結ぶ
-			
-			if(node.getParents().size() != 0){
-				aGraphics.drawLine((int)node.getPoint().getX()- offset.x,
-									(int)node.getPoint().getY()- offset.y,
-									(int)node.getParents().get(0).getPoint().getX()- offset.x,
-									(int)node.getParents().get(0).getPoint().getY()- offset.y);
-			}
-			
-			
-			
+			aGraphics.drawString(node.getName(),x- offset.x,y-3- offset.y);
+			aGraphics.drawRect(x- offset.x,y-height- offset.y,width,height);
+			y = y + 20;
 		}
-		
-		
+		/*
+		for(int i = 0; i< forestModel.getNodes().size();i++){
+			if(forestModel.getNodes().get(i).getParents().size() == 0){
+				searchChildrenNodes(aGraphics,node,50);
+			}
+		}*/
 	}
 	/*
 	public void searchChildrenNodes(Graphics aGraphics,Node node,int distanceX){
