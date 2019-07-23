@@ -29,7 +29,7 @@ public class ForestView extends JPanel{
 	private Point offset;
 
 	private Integer leafAmount;
-	
+
 	/**
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、コントローラを作り、モデルとビューを設定し、スクロール量を(0, 0)に設定する。
@@ -84,9 +84,6 @@ public class ForestView extends JPanel{
 		aGraphics.setColor(Color.WHITE);
 		aGraphics.fillRect(0, 0, width, height);
 		if (forestModel == null) { return; }
-		aGraphics.setColor(Color.RED);
-		aGraphics.drawRect(300- offset.x,300- offset.y,30,30);
-		//aGraphics.drawString("aho",300- offset.x,300- offset.y);
 
 		displayForest(aGraphics);
 
@@ -94,30 +91,44 @@ public class ForestView extends JPanel{
 	}
 
 	public void displayForest(Graphics aGraphics){
-		
+		int height = 15;
 		for(Node node :forestModel.getNodes() ){
-			//根ノードを最初に描画
-			if(node.getParents().size() == 0){  
-				searchChildrenNodes(aGraphics,node,50);
-				
-			}
-		}
-		/*
-		for(int i = 0; i< forestModel.getNodes().size();i++){
-			if(forestModel.getNodes().get(i).getParents().size() == 0){
-				searchChildrenNodes(aGraphics,node,50);
-			}
-		}*/
-	}
 
-	public void searchChildrenNodes(Graphics aGraphics,Node node,int distanceX){
+			//int width =  aGraphics.getFontMetrics().stringWidth(node.getName());
+
+			Font font1 = new Font("Arial",Font.PLAIN,12);
+			aGraphics.setFont(font1);
+			aGraphics.setColor(Color.BLACK);
+			aGraphics.drawString(node.getName(),
+								(int)node.getPoint().getX()- offset.x,
+								(int)node.getPoint().getY()-3- offset.y);
+			aGraphics.drawRect((int)node.getPoint().getX()- offset.x,
+								(int)node.getPoint().getY()-height- offset.y,
+								node.getTextWidth(),height);
+			//親ノードと子ノードを線で結ぶ
+			
+			if(node.getParents().size() != 0){
+				aGraphics.drawLine((int)node.getPoint().getX()- offset.x,
+									(int)node.getPoint().getY()- offset.y,
+									(int)node.getParents().get(0).getPoint().getX()- offset.x,
+									(int)node.getParents().get(0).getPoint().getY()- offset.y);
+			}
+			
+			
+			
+		}
 		
+		
+	}
+	/*
+	public void searchChildrenNodes(Graphics aGraphics,Node node,int distanceX){
+
 		int width = node.getName().length()+10;
 		int height = 15;
 		distanceX = distanceX + width + 50;
-		
+
 		if(node.getChildren().size() == 0){  setLeafAmount(getLeafAmount()+1);}
-		
+
 		int leaf = getLeafAmount()*20;
 		//ノードを表示
 		displayNode(aGraphics,node,distanceX,leaf,width,height);
@@ -127,14 +138,14 @@ public class ForestView extends JPanel{
 			searchChildrenNodes(aGraphics,node.getChildren().get(index),distanceX);
 		}
 	}
-	
+
 	public void displayNode(Graphics aGraphics,Node node,Integer x,Integer y,Integer width,Integer height){
 		Font font1 = new Font("Arial",Font.PLAIN,12);
 		aGraphics.setFont(font1);
 		aGraphics.setColor(Color.BLACK);
 		aGraphics.drawString(node.getName(),x,y);
 		aGraphics.drawRect(x,y-height,width,height);
-	}
+	}/*
 
 	/**
 	 * スクロール量（offsetの逆向きの大きさ）を応答する。
