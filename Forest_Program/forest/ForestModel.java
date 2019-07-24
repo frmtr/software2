@@ -27,7 +27,7 @@ public class ForestModel {
 
 	public final int distance = 30;
 
-	public final long millis = 20;
+	public final long millis = 10;
 
 	/**
 	 * インスタンスを生成して初期化して応答する。
@@ -148,13 +148,6 @@ public class ForestModel {
 	 */
 	public void animate(){
 
-		/*
-		 * データ解析　
-		 * ノードを取得
-		 * ツリー構造化する
-		 * それをViewに渡す
-		 */
-
 		//根ノードを取得
 		for(Node node :getNodes() ){
 			//根ノードを最初に描画
@@ -176,6 +169,7 @@ public class ForestModel {
 
 	/**
 	 * 読み込まれたノードのView座標を根ノードから葉ノードまで再帰的に求める
+	 * その過程をアニメーションする
 	 * @param node 探索中のノード
 	 * @param parent 探索中のノードの一つ上の親ノード。直属の親ノードの情報を持つ
 	 */
@@ -188,11 +182,8 @@ public class ForestModel {
 		//View座標を設定
 		node.setViewPoint(node.getPoint());
 
-		//変更をViewに伝える
-		this.changed();
-
-		//アニメーションのための停止時間を管理
-		tickTock();
+		//経過をViewに伝え、アニメーションの時間を管理する
+		processReport();
 
 		//葉ノードときleafを加算
 		countLeafNode(node,false);
@@ -232,6 +223,8 @@ public class ForestModel {
 		if(!isAllOfChildNodeSearched){
 			reArrangeNodeY(node);
 		}
+		//経過をViewに伝え、アニメーションの時間を管理する
+		processReport();
 		return;
 	}
 
@@ -304,15 +297,23 @@ public class ForestModel {
 		int y_childOfAve = 0;
 		if(node.getChildren().size() != 0){
 			for(int i = 0; i < node.getChildren().size();i++){
-				y_childOfAve += node.getChildren().get(i).getPoint().getY();
+				y_childOfAve += node.getChildren().get(i).getViewPoint().getY();
 			}
-			y_childOfAve = y_childOfAve/node.getChildren().size();
+			y_childOfAve = (int)y_childOfAve/node.getChildren().size();
 		}
 		else{
 			y_childOfAve =  (int)node.getPoint().getY();
 		}
 		node.setViewPoint(new Point((int)node.getPoint().getX(), y_childOfAve));
 		return;
+	}
+
+	public void processReport(){
+		//変更をViewに伝える
+		this.changed();
+
+		//アニメーションのための停止時間を管理
+		tickTock();
 	}
 
 	/**
