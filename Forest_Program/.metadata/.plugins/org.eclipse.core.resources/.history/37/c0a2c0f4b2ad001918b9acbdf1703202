@@ -232,7 +232,7 @@ public class ForestModel {
 		if(!isAllOfChildNodeSearched){
 			reArrangeNodeY(node);
 		}
-
+		
 		//変更をViewに伝える
 		this.changed();
 

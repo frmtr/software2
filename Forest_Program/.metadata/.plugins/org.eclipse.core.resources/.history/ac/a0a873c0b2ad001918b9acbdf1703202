@@ -232,12 +232,6 @@ public class ForestModel {
 		if(!isAllOfChildNodeSearched){
 			reArrangeNodeY(node);
 		}
-
-		//変更をViewに伝える
-		this.changed();
-
-		//アニメーションのための停止時間を管理
-		tickTock();
 		return;
 	}
 

@@ -2,14 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Controller" key="selection"/>
+		<item value="getViewPoint" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="getPoint"/>
 			<item value="controller"/>
 			<item value="model"/>
 		</list>
 		<list key="replacehistory">
+			<item value="getViewPoint"/>
 			<item value="forestController"/>
 			<item value="forestModel"/>
 		</list>
