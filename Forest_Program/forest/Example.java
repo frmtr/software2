@@ -1,9 +1,13 @@
 package forest;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.io.File;
+import java.io.FileNotFoundException;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * 樹状整列の例題クラス：使い方の典型を示すのが目的のプログラムです。<br>
@@ -20,43 +24,46 @@ public class Example extends Object
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/forest.txt<br>
 	 * $ java -Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar forest.jar resource/data/semilattice.txt<br>
 	 * @param arguments 樹状整列データファイルを第1引数とする引数文字列群
+	 * @throws FileNotFoundException 指定されたパス名で示されるファイルが開けなかったことを通知
 	 */
-	public static void main(String[] arguments)
+	public static void main(String[] arguments) throws FileNotFoundException
 	{
-		// 引数が無い（樹状整列データファイルの在り処がわからない）をチェックする。
-		if (arguments.length < 1)
-		{
-			System.err.println("There are too few arguments.");
-			System.exit(1);
-		}
+		JFileChooser chooser = new JFileChooser();
 
-		// 第1引数で指定された樹状整列データファイルの存在をチェックする。
-		File aFile = new File(arguments[0]);
-		if (!(aFile.exists()))
-		{
-			System.err.println("'" + aFile + "' does not exist.");
-			System.exit(1);
-		}
+		String currentDirectory = System.getProperty("user.dir");
+		String dataDirectory = currentDirectory +  File.separator + "resource" + File.separator + "data" + File.separator + "tree.txt";
 
-		/**********
+		//デフォルトの選択ファイルを指定
+		chooser.setSelectedFile(new File(dataDirectory));
 
-		 // MVCを作成する。
-		ForestModel aModel = new ForestModel(aFile);
-		ForestView aView = new ForestView(aModel);
+		FileFilter filter = new FileNameExtensionFilter("textファイル", "txt");
+		chooser.addChoosableFileFilter(filter);
+		chooser.setAcceptAllFileFilterUsed(false);
 
-		// ウィンドウを生成して開く。
-		JFrame aWindow = new JFrame(aFile.getName());
-		aWindow.getContentPane().add(aView);
-		aWindow.setMinimumSize(new Dimension(400, 300));
-		aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		aWindow.setSize(800, 600);
-		aWindow.setLocationRelativeTo(null);
-		aWindow.setVisible(true);
+		chooser.setDialogTitle("ファイルを読み込む");
 
-		// 樹状整列のアニメーションを行う。
-		aModel.animate();
+		//ダイアログを表示
+		int selected = chooser.showOpenDialog(null);
+		File aFile;
+		if(selected == JFileChooser.APPROVE_OPTION){
+			aFile = chooser.getSelectedFile();
 
-		**********/
+			// MVCを作成する。
+			ForestModel aModel = new ForestModel(aFile);
+			ForestView aView = new ForestView(aModel);
+
+			// ウィンドウを生成して開く。
+			JFrame aWindow = new JFrame(aFile.getName());
+			aWindow.getContentPane().add(aView);
+			aWindow.setMinimumSize(new Dimension(400, 300));
+			aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			aWindow.setSize(800, 600);
+			aWindow.setLocationRelativeTo(null);
+			aWindow.setVisible(true);
+
+			// 樹状整列のアニメーションを行う。
+			aModel.animate();
+        }
 
 		return;
 	}
