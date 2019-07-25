@@ -321,7 +321,7 @@ public class ForestModel {
 			for(int i = 0; i < node.getChildren().size();i++){
 				y_childOfAve += node.getChildren().get(i).getViewPoint().getY();
 			}
-			y_childOfAve = (int)y_childOfAve/node.getChildren().size();
+			y_childOfAve = y_childOfAve/node.getChildren().size();
 		}
 		else{
 			y_childOfAve =  (int)node.getPoint().getY();

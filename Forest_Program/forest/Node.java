@@ -11,6 +11,7 @@ import javax.swing.JFrame;
  * @author Takumi Koike 744438
  *
  */
+ @SuppressWarnings("serial")
 public class Node extends JFrame{
 
 	/**
