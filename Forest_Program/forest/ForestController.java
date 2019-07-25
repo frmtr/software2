@@ -9,6 +9,11 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.event.MouseInputAdapter;
 
+/**
+ * コントローラの制御周りを専門に行う<br>
+ * @author Takumi Koike 744438
+ */
+
 public class ForestController extends MouseInputAdapter implements MouseWheelListener{
 
 	/**
@@ -161,9 +166,8 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 
 	/**
 	 * 指定されたモデルをインスタンス変数forestModelに設定する。
-	 * @param aforestModel このコントローラのモデル
+	 * @param aForestModel このコントローラのモデル
 	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
 	 */
 	public void setForestModel(ForestModel aForestModel)
 	{
@@ -174,7 +178,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 指定されたビューをインスタンス変数forestViewに設定し、
 	 * ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。
-	 * @param aforestView このコントローラのビュー
+	 * @param aForestView このコントローラのビュー
 	 * 良好（2010年7月25日）
 	 * 修正（2015年2月9日）
 	 */
