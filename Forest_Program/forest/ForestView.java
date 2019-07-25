@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * ビュー 描画処理を行う
  * @author Takumi Koike 744438
  */
-
+@SuppressWarnings("serial")
 public class ForestView extends JPanel{
 
 	/**
