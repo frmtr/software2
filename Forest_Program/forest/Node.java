@@ -6,6 +6,11 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+/**
+ * ノード ツリー構造はノード自身に親子それぞれのポインタを持たせることで実現
+ * @author Takumi Koike 744438
+ *
+ */
 public class Node extends JFrame{
 
 	/**
@@ -92,7 +97,7 @@ public class Node extends JFrame{
 
 	/**
 	 * ノードの番号を設定する
-	 * @param aInteger
+	 * @param aInteger ノード番号
 	 */
 	public void setNumber(Integer aInteger){
 		this.nodeNumber = aInteger;
@@ -116,7 +121,7 @@ public class Node extends JFrame{
 
 	/**
 	 * ノードのModel座標を応答する
-	 * @return
+	 * @return ノードのModel座標
 	 */
 	public Point getPoint(){
 		return this.point;
@@ -124,7 +129,7 @@ public class Node extends JFrame{
 
 	/**
 	 * ノードのModel座標を設定する
-	 * @param aPoint
+	 * @param aPoint　ノードのModel座標
 	 */
 	public void setPoint(Point aPoint){
 		this.point = aPoint;
@@ -132,7 +137,7 @@ public class Node extends JFrame{
 
 	/**
 	 * ノードのView座標を設定する。
-	 * @return
+	 * @return ノードのView
 	 */
 	public Point getViewPoint(){
 		return this.viewPoint;
@@ -140,7 +145,7 @@ public class Node extends JFrame{
 
 	/**
 	 * ノードのView座標を設定する
-	 * @param aPoint
+	 * @param aPoint ノードのView座標
 	 */
 	public void setViewPoint(Point aPoint){
 		this.viewPoint = aPoint;

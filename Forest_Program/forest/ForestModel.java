@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
+/**
+ * モデル テキストを読み取りツリー構造を実現する。また表示する座標を計算する。<br>
+ * @author Takumi Koike 744438
+ */
+
 public class ForestModel {
 
 	/**
@@ -19,20 +24,36 @@ public class ForestModel {
 	 */
 	protected ArrayList<ForestView> dependents;
 
+	/**
+	 * ノードのリストを束縛する
+	 */
 	private ArrayList<Node> nodes;
 
+	/**
+	 * 葉ノードの個数を保持する
+	 */
 	public int leaf = 0;
 
+	/**
+	 * 表示する際の一つのノードの高さ
+	 */
 	public final int height = 20;
 
+	/**
+	 * 表示する際のx軸において、ノードごとの間隔
+	 */
 	public final int distance = 30;
 
+	/**
+	 * アニメーションする際の速度
+	 */
 	public final long millis = 10;
 
 	/**
 	 * インスタンスを生成して初期化して応答する。
 	 * 良好（2010年7月25日）
-	 * @throws FileNotFoundException
+	 * @param aFile 受け取ったらファイル
+	 * @throws FileNotFoundException 指定されたパス名で示されるファイルが開けなかったことを通知
 	 */
 	public ForestModel(File aFile) throws FileNotFoundException
 	{
@@ -232,7 +253,7 @@ public class ForestModel {
 	 * 探索しているノードのmodel座標を求める。
 	 * @param node 探索中のノード
 	 * @param parent 探索中の直属の親ノード
-	 * @return
+	 * @return aPoint モデル座標
 	 */
 	public Point putNodeModelPoint(Node node,Node parent){
 
@@ -275,7 +296,8 @@ public class ForestModel {
 
 	/**
 	 * 探索中のNodeが葉ノードのときleafを加算する
-	 * @param node
+	 * @param node 探索中のノード
+	 * @param isAllOfChildNodeSearched 子ノードが全て探索済みか
 	 */
 	public void countLeafNode(Node node,boolean isAllOfChildNodeSearched){
 		if(node.getChildren().size()==0){

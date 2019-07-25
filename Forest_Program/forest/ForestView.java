@@ -7,6 +7,11 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
+/**
+ * ビュー 描画処理を行う
+ * @author Takumi Koike 744438
+ */
+
 public class ForestView extends JPanel{
 
 	/**
@@ -31,14 +36,14 @@ public class ForestView extends JPanel{
 	/**
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、コントローラを作り、モデルとビューを設定し、スクロール量を(0, 0)に設定する。
-	 * @param aModel このビューのモデル
+	 * @param aForestModel このビューのモデル
 	 * 良好（2010年7月25日）
 	 * 修正（2015年2月9日）
 	 */
-	public ForestView(ForestModel aforestModel)
+	public ForestView(ForestModel aForestModel)
 	{
 		super();
-		forestModel = aforestModel;
+		forestModel = aForestModel;
 		forestModel.addDependent(this);
 		forestController = new ForestController();
 		forestController.setForestModel(forestModel);
@@ -50,17 +55,17 @@ public class ForestView extends JPanel{
 	/**
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、指定されたコントローラにモデルとビューを設定し、スクロール量を(0, 0)に設定する。
-	 * @param aforestModel このビューのモデル
-	 * @param aforestController このビューのコントローラ
+	 * @param aForestModel このビューのモデル
+	 * @param aForestController このビューのコントローラ
 	 * 良好（2010年7月25日）
 	 * 修正（2015年2月9日）
 	 */
-	public ForestView(ForestModel aForestModel, ForestController aforestController)
+	public ForestView(ForestModel aForestModel, ForestController aForestController)
 	{
 		super();
 		forestModel = aForestModel;
 		forestModel.addDependent(this);
-		forestController = aforestController;
+		forestController = aForestController;
 		forestController.setForestModel(forestModel);
 		forestController.setForestView(this);
 		offset = new Point(0, 0);
