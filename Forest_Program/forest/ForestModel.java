@@ -316,18 +316,47 @@ public class ForestModel {
 	 * @param node 子ノードを探索し終えたノード
 	 */
 	public void reArrangeNodeY(Node node){
-		int y_childOfAve = 0;
-		if(node.getChildren().size() != 0){
-			for(int i = 0; i < node.getChildren().size();i++){
-				y_childOfAve += node.getChildren().get(i).getViewPoint().getY();
-			}
-			y_childOfAve = y_childOfAve/node.getChildren().size();
-		}
-		else{
-			y_childOfAve =  (int)node.getPoint().getY();
-		}
-		node.setViewPoint(new Point((int)node.getPoint().getX(), y_childOfAve));
+		//そのツリーの最初の葉ノードを探索
+		//その葉ノードのY座標を取得
+		int firstLeafY = getFirstLeafY(node);
+
+		//そのツリーの最後の葉ノードを探索
+		//その葉ノードのY座標を取得
+		int lastLeafY = getLastLeafY(node);
+
+		//それらの平均をY座標にする
+		node.setViewPoint(new Point((int)node.getPoint().getX(), (firstLeafY+lastLeafY)/2 ));
+
 		return;
+	}
+
+	/**
+	 * 0番目の子供が葉ノードのY座標を応答する
+	 * @param node　探索中のノード
+	 * @return 0番目の子供が葉ノードのY座標
+	 */
+	public int getFirstLeafY(Node node){
+		//0番目の子供が親ノードのとき再帰処理
+		if(node.getChildren().get(0).getChildren().size() != 0){
+			return getFirstLeafY(node.getChildren().get(0));
+		}
+		//0番目の子供が葉ノードのとき取得
+		return (int)node.getChildren().get(0).getPoint().getY();
+	}
+
+
+	/**
+	 * 最後の子供が葉ノードのY座標を応答する
+	 * @param node　探索中のノード
+	 * @return 最後の子供が葉ノードのY座標
+	 */
+	public int getLastLeafY(Node node){
+		//最後の子供が親ノードのとき再帰処理
+		if(node.getChildren().get(node.getChildren().size() -1).getChildren().size() != 0){
+			return getLastLeafY(node.getChildren().get(node.getChildren().size() -1));
+		}
+		//最後の子供が葉ノードのとき取得
+		return (int)node.getChildren().get(node.getChildren().size() -1).getPoint().getY();
 	}
 
 	public void processReport(){
