@@ -325,81 +325,110 @@
 <span class="sourceLineNo">316</span><a id="line.316">         * @param node 子ノードを探索し終えたノード</a>
 <span class="sourceLineNo">317</span><a id="line.317">         */</a>
 <span class="sourceLineNo">318</span><a id="line.318">        public void reArrangeNodeY(Node node){</a>
-<span class="sourceLineNo">319</span><a id="line.319">                int y_childOfAve = 0;</a>
-<span class="sourceLineNo">320</span><a id="line.320">                if(node.getChildren().size() != 0){</a>
-<span class="sourceLineNo">321</span><a id="line.321">                        for(int i = 0; i &lt; node.getChildren().size();i++){</a>
-<span class="sourceLineNo">322</span><a id="line.322">                                y_childOfAve += node.getChildren().get(i).getViewPoint().getY();</a>
-<span class="sourceLineNo">323</span><a id="line.323">                        }</a>
-<span class="sourceLineNo">324</span><a id="line.324">                        y_childOfAve = y_childOfAve/node.getChildren().size();</a>
-<span class="sourceLineNo">325</span><a id="line.325">                }</a>
-<span class="sourceLineNo">326</span><a id="line.326">                else{</a>
-<span class="sourceLineNo">327</span><a id="line.327">                        y_childOfAve =  (int)node.getPoint().getY();</a>
-<span class="sourceLineNo">328</span><a id="line.328">                }</a>
-<span class="sourceLineNo">329</span><a id="line.329">                node.setViewPoint(new Point((int)node.getPoint().getX(), y_childOfAve));</a>
+<span class="sourceLineNo">319</span><a id="line.319">                //そのツリーの最初の葉ノードを探索</a>
+<span class="sourceLineNo">320</span><a id="line.320">                //その葉ノードのY座標を取得</a>
+<span class="sourceLineNo">321</span><a id="line.321">                int firstLeafY = getFirstLeafY(node);</a>
+<span class="sourceLineNo">322</span><a id="line.322"></a>
+<span class="sourceLineNo">323</span><a id="line.323">                //そのツリーの最後の葉ノードを探索</a>
+<span class="sourceLineNo">324</span><a id="line.324">                //その葉ノードのY座標を取得</a>
+<span class="sourceLineNo">325</span><a id="line.325">                int lastLeafY = getLastLeafY(node);</a>
+<span class="sourceLineNo">326</span><a id="line.326"></a>
+<span class="sourceLineNo">327</span><a id="line.327">                //それらの平均をY座標にする</a>
+<span class="sourceLineNo">328</span><a id="line.328">                node.setViewPoint(new Point((int)node.getPoint().getX(), (firstLeafY+lastLeafY)/2 ));</a>
+<span class="sourceLineNo">329</span><a id="line.329"></a>
 <span class="sourceLineNo">330</span><a id="line.330">                return;</a>
 <span class="sourceLineNo">331</span><a id="line.331">        }</a>
 <span class="sourceLineNo">332</span><a id="line.332"></a>
-<span class="sourceLineNo">333</span><a id="line.333">        public void processReport(){</a>
-<span class="sourceLineNo">334</span><a id="line.334">                //変更をViewに伝える</a>
-<span class="sourceLineNo">335</span><a id="line.335">                this.changed();</a>
-<span class="sourceLineNo">336</span><a id="line.336"></a>
-<span class="sourceLineNo">337</span><a id="line.337">                //アニメーションのための停止時間を管理</a>
-<span class="sourceLineNo">338</span><a id="line.338">                tickTock();</a>
-<span class="sourceLineNo">339</span><a id="line.339">        }</a>
-<span class="sourceLineNo">340</span><a id="line.340"></a>
-<span class="sourceLineNo">341</span><a id="line.341">        /**</a>
-<span class="sourceLineNo">342</span><a id="line.342">         * ツリー構造を標準出力する</a>
-<span class="sourceLineNo">343</span><a id="line.343">         * @param node 調査中のメソッド</a>
-<span class="sourceLineNo">344</span><a id="line.344">         * @param time　ノードの深さ</a>
-<span class="sourceLineNo">345</span><a id="line.345">         */</a>
-<span class="sourceLineNo">346</span><a id="line.346">        public void print(Node node,Integer time){</a>
+<span class="sourceLineNo">333</span><a id="line.333">        /**</a>
+<span class="sourceLineNo">334</span><a id="line.334">         * 0番目の子供が葉ノードのY座標を応答する</a>
+<span class="sourceLineNo">335</span><a id="line.335">         * @param node　探索中のノード</a>
+<span class="sourceLineNo">336</span><a id="line.336">         * @return 0番目の子供が葉ノードのY座標</a>
+<span class="sourceLineNo">337</span><a id="line.337">         */</a>
+<span class="sourceLineNo">338</span><a id="line.338">        public int getFirstLeafY(Node node){</a>
+<span class="sourceLineNo">339</span><a id="line.339">                //0番目の子供が親ノードのとき再帰処理</a>
+<span class="sourceLineNo">340</span><a id="line.340">                if(node.getChildren().get(0).getChildren().size() != 0){</a>
+<span class="sourceLineNo">341</span><a id="line.341">                        return getFirstLeafY(node.getChildren().get(0));</a>
+<span class="sourceLineNo">342</span><a id="line.342">                }</a>
+<span class="sourceLineNo">343</span><a id="line.343">                //0番目の子供が葉ノードのとき取得</a>
+<span class="sourceLineNo">344</span><a id="line.344">                return (int)node.getChildren().get(0).getPoint().getY();</a>
+<span class="sourceLineNo">345</span><a id="line.345">        }</a>
+<span class="sourceLineNo">346</span><a id="line.346"></a>
 <span class="sourceLineNo">347</span><a id="line.347"></a>
-<span class="sourceLineNo">348</span><a id="line.348">                time = time + 1;</a>
-<span class="sourceLineNo">349</span><a id="line.349">                String branch = "+ ";</a>
-<span class="sourceLineNo">350</span><a id="line.350">                for(int i = 0; i &lt; time; i++){ branch = branch + "- " ;}</a>
-<span class="sourceLineNo">351</span><a id="line.351"></a>
-<span class="sourceLineNo">352</span><a id="line.352">                System.out.println(branch+node.getName());</a>
-<span class="sourceLineNo">353</span><a id="line.353"></a>
-<span class="sourceLineNo">354</span><a id="line.354">                for(Node child : node.getChildren()){</a>
-<span class="sourceLineNo">355</span><a id="line.355">                        print(child,time);</a>
-<span class="sourceLineNo">356</span><a id="line.356">                }</a>
-<span class="sourceLineNo">357</span><a id="line.357">                return;</a>
-<span class="sourceLineNo">358</span><a id="line.358">        }</a>
-<span class="sourceLineNo">359</span><a id="line.359"></a>
-<span class="sourceLineNo">360</span><a id="line.360">        /**</a>
-<span class="sourceLineNo">361</span><a id="line.361">         * このインスタンスを文字列にして応答する。</a>
-<span class="sourceLineNo">362</span><a id="line.362">         * @return 自分自身を表す文字列</a>
-<span class="sourceLineNo">363</span><a id="line.363">         */</a>
-<span class="sourceLineNo">364</span><a id="line.364">        public String toString()</a>
-<span class="sourceLineNo">365</span><a id="line.365">        {</a>
-<span class="sourceLineNo">366</span><a id="line.366">                StringBuffer aBuffer = new StringBuffer();</a>
-<span class="sourceLineNo">367</span><a id="line.367">                Class&lt;?&gt; aClass = this.getClass();</a>
-<span class="sourceLineNo">368</span><a id="line.368">                aBuffer.append(aClass.getName());</a>
-<span class="sourceLineNo">369</span><a id="line.369">                /*</a>
-<span class="sourceLineNo">370</span><a id="line.370">                aBuffer.append("[picture=");</a>
-<span class="sourceLineNo">371</span><a id="line.371">                aBuffer.append(picture);</a>
-<span class="sourceLineNo">372</span><a id="line.372">                aBuffer.append("]");</a>
-<span class="sourceLineNo">373</span><a id="line.373">                */</a>
-<span class="sourceLineNo">374</span><a id="line.374">                return aBuffer.toString();</a>
-<span class="sourceLineNo">375</span><a id="line.375">        }</a>
+<span class="sourceLineNo">348</span><a id="line.348">        /**</a>
+<span class="sourceLineNo">349</span><a id="line.349">         * 最後の子供が葉ノードのY座標を応答する</a>
+<span class="sourceLineNo">350</span><a id="line.350">         * @param node　探索中のノード</a>
+<span class="sourceLineNo">351</span><a id="line.351">         * @return 最後の子供が葉ノードのY座標</a>
+<span class="sourceLineNo">352</span><a id="line.352">         */</a>
+<span class="sourceLineNo">353</span><a id="line.353">        public int getLastLeafY(Node node){</a>
+<span class="sourceLineNo">354</span><a id="line.354">                //最後の子供が親ノードのとき再帰処理</a>
+<span class="sourceLineNo">355</span><a id="line.355">                if(node.getChildren().get(node.getChildren().size() -1).getChildren().size() != 0){</a>
+<span class="sourceLineNo">356</span><a id="line.356">                        return getLastLeafY(node.getChildren().get(node.getChildren().size() -1));</a>
+<span class="sourceLineNo">357</span><a id="line.357">                }</a>
+<span class="sourceLineNo">358</span><a id="line.358">                //最後の子供が葉ノードのとき取得</a>
+<span class="sourceLineNo">359</span><a id="line.359">                return (int)node.getChildren().get(node.getChildren().size() -1).getPoint().getY();</a>
+<span class="sourceLineNo">360</span><a id="line.360">        }</a>
+<span class="sourceLineNo">361</span><a id="line.361"></a>
+<span class="sourceLineNo">362</span><a id="line.362">        public void processReport(){</a>
+<span class="sourceLineNo">363</span><a id="line.363">                //変更をViewに伝える</a>
+<span class="sourceLineNo">364</span><a id="line.364">                this.changed();</a>
+<span class="sourceLineNo">365</span><a id="line.365"></a>
+<span class="sourceLineNo">366</span><a id="line.366">                //アニメーションのための停止時間を管理</a>
+<span class="sourceLineNo">367</span><a id="line.367">                tickTock();</a>
+<span class="sourceLineNo">368</span><a id="line.368">        }</a>
+<span class="sourceLineNo">369</span><a id="line.369"></a>
+<span class="sourceLineNo">370</span><a id="line.370">        /**</a>
+<span class="sourceLineNo">371</span><a id="line.371">         * ツリー構造を標準出力する</a>
+<span class="sourceLineNo">372</span><a id="line.372">         * @param node 調査中のメソッド</a>
+<span class="sourceLineNo">373</span><a id="line.373">         * @param time　ノードの深さ</a>
+<span class="sourceLineNo">374</span><a id="line.374">         */</a>
+<span class="sourceLineNo">375</span><a id="line.375">        public void print(Node node,Integer time){</a>
 <span class="sourceLineNo">376</span><a id="line.376"></a>
-<span class="sourceLineNo">377</span><a id="line.377">        /**</a>
-<span class="sourceLineNo">378</span><a id="line.378">         * ノードのリストを応答する</a>
-<span class="sourceLineNo">379</span><a id="line.379">         * @return nodes ノードの全リスト</a>
-<span class="sourceLineNo">380</span><a id="line.380">         */</a>
-<span class="sourceLineNo">381</span><a id="line.381">        public ArrayList&lt;Node&gt; getNodes() {</a>
-<span class="sourceLineNo">382</span><a id="line.382">                return nodes;</a>
-<span class="sourceLineNo">383</span><a id="line.383">        }</a>
-<span class="sourceLineNo">384</span><a id="line.384"></a>
-<span class="sourceLineNo">385</span><a id="line.385">        /**</a>
-<span class="sourceLineNo">386</span><a id="line.386">         * ノードのリストを設定する。</a>
-<span class="sourceLineNo">387</span><a id="line.387">         * @param nodes　ノードのリスト</a>
-<span class="sourceLineNo">388</span><a id="line.388">         */</a>
-<span class="sourceLineNo">389</span><a id="line.389">        public void setNodes(ArrayList&lt;Node&gt; nodes) {</a>
-<span class="sourceLineNo">390</span><a id="line.390">                this.nodes = nodes;</a>
-<span class="sourceLineNo">391</span><a id="line.391">        }</a>
-<span class="sourceLineNo">392</span><a id="line.392"></a>
-<span class="sourceLineNo">393</span><a id="line.393">}</a>
+<span class="sourceLineNo">377</span><a id="line.377">                time = time + 1;</a>
+<span class="sourceLineNo">378</span><a id="line.378">                String branch = "+ ";</a>
+<span class="sourceLineNo">379</span><a id="line.379">                for(int i = 0; i &lt; time; i++){ branch = branch + "- " ;}</a>
+<span class="sourceLineNo">380</span><a id="line.380"></a>
+<span class="sourceLineNo">381</span><a id="line.381">                System.out.println(branch+node.getName());</a>
+<span class="sourceLineNo">382</span><a id="line.382"></a>
+<span class="sourceLineNo">383</span><a id="line.383">                for(Node child : node.getChildren()){</a>
+<span class="sourceLineNo">384</span><a id="line.384">                        print(child,time);</a>
+<span class="sourceLineNo">385</span><a id="line.385">                }</a>
+<span class="sourceLineNo">386</span><a id="line.386">                return;</a>
+<span class="sourceLineNo">387</span><a id="line.387">        }</a>
+<span class="sourceLineNo">388</span><a id="line.388"></a>
+<span class="sourceLineNo">389</span><a id="line.389">        /**</a>
+<span class="sourceLineNo">390</span><a id="line.390">         * このインスタンスを文字列にして応答する。</a>
+<span class="sourceLineNo">391</span><a id="line.391">         * @return 自分自身を表す文字列</a>
+<span class="sourceLineNo">392</span><a id="line.392">         */</a>
+<span class="sourceLineNo">393</span><a id="line.393">        public String toString()</a>
+<span class="sourceLineNo">394</span><a id="line.394">        {</a>
+<span class="sourceLineNo">395</span><a id="line.395">                StringBuffer aBuffer = new StringBuffer();</a>
+<span class="sourceLineNo">396</span><a id="line.396">                Class&lt;?&gt; aClass = this.getClass();</a>
+<span class="sourceLineNo">397</span><a id="line.397">                aBuffer.append(aClass.getName());</a>
+<span class="sourceLineNo">398</span><a id="line.398">                /*</a>
+<span class="sourceLineNo">399</span><a id="line.399">                aBuffer.append("[picture=");</a>
+<span class="sourceLineNo">400</span><a id="line.400">                aBuffer.append(picture);</a>
+<span class="sourceLineNo">401</span><a id="line.401">                aBuffer.append("]");</a>
+<span class="sourceLineNo">402</span><a id="line.402">                */</a>
+<span class="sourceLineNo">403</span><a id="line.403">                return aBuffer.toString();</a>
+<span class="sourceLineNo">404</span><a id="line.404">        }</a>
+<span class="sourceLineNo">405</span><a id="line.405"></a>
+<span class="sourceLineNo">406</span><a id="line.406">        /**</a>
+<span class="sourceLineNo">407</span><a id="line.407">         * ノードのリストを応答する</a>
+<span class="sourceLineNo">408</span><a id="line.408">         * @return nodes ノードの全リスト</a>
+<span class="sourceLineNo">409</span><a id="line.409">         */</a>
+<span class="sourceLineNo">410</span><a id="line.410">        public ArrayList&lt;Node&gt; getNodes() {</a>
+<span class="sourceLineNo">411</span><a id="line.411">                return nodes;</a>
+<span class="sourceLineNo">412</span><a id="line.412">        }</a>
+<span class="sourceLineNo">413</span><a id="line.413"></a>
+<span class="sourceLineNo">414</span><a id="line.414">        /**</a>
+<span class="sourceLineNo">415</span><a id="line.415">         * ノードのリストを設定する。</a>
+<span class="sourceLineNo">416</span><a id="line.416">         * @param nodes　ノードのリスト</a>
+<span class="sourceLineNo">417</span><a id="line.417">         */</a>
+<span class="sourceLineNo">418</span><a id="line.418">        public void setNodes(ArrayList&lt;Node&gt; nodes) {</a>
+<span class="sourceLineNo">419</span><a id="line.419">                this.nodes = nodes;</a>
+<span class="sourceLineNo">420</span><a id="line.420">        }</a>
+<span class="sourceLineNo">421</span><a id="line.421"></a>
+<span class="sourceLineNo">422</span><a id="line.422">}</a>
 
 
 
