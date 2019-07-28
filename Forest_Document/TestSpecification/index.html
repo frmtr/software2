@@ -415,6 +415,118 @@ th {
             <td class="left-padding">モデルの内部状態が変化していたので、自分の依存物へupdateのメッセージを送信する。</td>
             <td class="left-padding">良好（2019年7月22日）</td>
           </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">readFile</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">読み込んだファイルのテキストを１行ずつ読み込み木構造化するための準備をする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">node</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">テキスト１行の内容"node"部分をデータ化してnodeのリストに入れる。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">branch</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">テキスト１行の内容"branches"部分をデータ化する。これは標準出力用である。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">animate</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">最初に読み込まれアニメーションのための準備をする 根ノードを探しmoveに渡す。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">move</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">読み込まれたノードのView座標を根ノードから葉ノードまで再帰的に求める その過程をアニメーションする</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">putNodeModelPoint</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">探索しているノードのmodel座標を求める。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">tickTock</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">アニメーションのために遅延時間を設定する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">countLeafNode</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">探索中のNodeが葉ノードのときleafを加算する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">reArrangeNodeY/a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">子ノードを探索し終えたノードのView座標を更新する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">getFirstLeafY</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">0番目の子供が葉ノードのY座標を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">getLastLeafY</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">最後の子供が葉ノードのY座標を応答する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">processReport</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">変更点をViewに伝え、アニメーションのために時間停止を行う。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">print</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ツリー構造を標準出力する</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">toString</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">getNodes</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストを応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">setNodes</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストを設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
         </tbody>
       </table>
       </td>
