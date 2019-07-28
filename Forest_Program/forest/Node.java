@@ -37,7 +37,7 @@ public class Node extends JFrame{
 	 * model座標をPointのインスタンスとして束縛する。
 	 */
 	private Point point;
-	/*
+	/**
 	 * view座標をPointのインスタンスとして束縛する。
 	 */
 	private Point viewPoint;
