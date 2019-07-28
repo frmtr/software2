@@ -93,6 +93,11 @@ public class ForestModel {
 		return;
 	}
 
+	/**
+	 * 読み込んだファイルのテキストを１行ずつ読み込み木構造化するための準備をする。
+	 * @param aFile 読み込んだファイル
+	 * @throws FileNotFoundException 指定されたパス名で示されるファイルが開けなかったことを通知。
+	 */
 	public void readFile(File aFile) throws FileNotFoundException{
 
 		FileInputStream fi = new FileInputStream(aFile);
@@ -134,6 +139,10 @@ public class ForestModel {
 		return;
 	}
 
+	/**
+	 * テキスト１行の内容"node"部分をデータ化してnodeのリストに入れる。
+	 * @param line 読み込んだテキスト１行
+	 */
 	public void node(String line){
 		//読み込んだデータを分割
 		String[] data = line.split(", ");
@@ -147,6 +156,10 @@ public class ForestModel {
 		return;
 	}
 
+	/**
+	 * テキスト１行の内容"branches"部分をデータ化する。これは標準出力用である。
+	 * @param line 読み込んだテキスト１行
+	 */
 	public void branches(String line){
 		String[] data = line.split(", ");
 		Integer parentNodeNumber = Integer.parseInt(data[0]);
@@ -164,7 +177,7 @@ public class ForestModel {
 
 
 	/**
-	 * 最初に読み込まれアニメーションのための準備をする
+	 * 最初に読み込まれアニメーションのための準備をする。
 	 * 根ノードを探しmoveに渡す。
 	 */
 	public void animate(){
@@ -189,10 +202,10 @@ public class ForestModel {
 	}
 
 	/**
-	 * 読み込まれたノードのView座標を根ノードから葉ノードまで再帰的に求める
-	 * その過程をアニメーションする
-	 * @param node 探索中のノード
-	 * @param parent 探索中のノードの一つ上の親ノード。直属の親ノードの情報を持つ
+	 * 読み込まれたノードのView座標を根ノードから葉ノードまで再帰的に求める。
+	 * その過程をアニメーションする。
+	 * @param node 探索中のノード。
+	 * @param parent 探索中のノードの一つ上の親ノード。直属の親ノードの情報を持つ。
 	 */
 	public void move(Node node,Node parent){
 		//探索したノードをtrueにする
@@ -216,7 +229,7 @@ public class ForestModel {
 		boolean isAllOfChildNodeSearched = true;
 
 		/*
-		 * 自身が親ノードであり、子ノード探索前に子ノードがすでに全て探索済みであれば葉ノードと同じ表示方法をとる。つまり座標の更新を行わない.
+		 * 自身が親ノードであり、子ノード探索前に子ノードがすでに全て探索済みであれば葉ノードと同じ表示方法をとる。つまり座標の更新を行わない。
 		 * 調査前であれば更新する必要がある。isAllOfChildNodeSearchedはfalseになる。
 		 */
 		//自身が親ノードであるかを確認
@@ -240,7 +253,7 @@ public class ForestModel {
 			}
 		}
 
-		//"isAllOfChildNodeSearched"の条件を満たしていなければ自分を調整する
+		//"isAllOfChildNodeSearched"の条件を満たしていなければ自分を調整する。
 		if(!isAllOfChildNodeSearched){
 			reArrangeNodeY(node);
 		}
@@ -271,7 +284,7 @@ public class ForestModel {
 			y = 30 + 20*leaf;
 			rootNodeY = y;
 		}
-		//それ以外のときは親ノードの座標を参考にmodel座標を計算する.
+		//それ以外のときは親ノードの座標を参考にmodel座標を計算する。
 		else{
 			x = (int)parent.getPoint().getX() + parent.getTextWidth()+ 10 + distance;
 			y = rootNodeY + leaf * height;
@@ -282,7 +295,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * アニメーションのために遅延時間を設定する
+	 * アニメーションのために遅延時間を設定する。
 	 */
 	public void tickTock(){
 		try {
@@ -295,7 +308,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * 探索中のNodeが葉ノードのときleafを加算する
+	 * 探索中のNodeが葉ノードのときleafを加算する。
 	 * @param node 探索中のノード
 	 * @param isAllOfChildNodeSearched 子ノードが全て探索済みか
 	 */
@@ -312,7 +325,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * 子ノードを探索し終えたノードのView座標を更新する
+	 * 子ノードを探索し終えたノードのView座標を更新する。
 	 * @param node 子ノードを探索し終えたノード
 	 */
 	public void reArrangeNodeY(Node node){
@@ -331,7 +344,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * 0番目の子供が葉ノードのY座標を応答する
+	 * 0番目の子供が葉ノードのY座標を応答する。
 	 * @param node　探索中のノード
 	 * @return 0番目の子供が葉ノードのY座標
 	 */
@@ -346,7 +359,7 @@ public class ForestModel {
 
 
 	/**
-	 * 最後の子供が葉ノードのY座標を応答する
+	 * 最後の子供が葉ノードのY座標を応答する。
 	 * @param node　探索中のノード
 	 * @return 最後の子供が葉ノードのY座標
 	 */
@@ -359,6 +372,9 @@ public class ForestModel {
 		return (int)node.getChildren().get(node.getChildren().size() -1).getPoint().getY();
 	}
 
+	/**
+	 * 変更点をViewに伝え、アニメーションのために時間停止を行う。
+	 */
 	public void processReport(){
 		//変更をViewに伝える
 		this.changed();
@@ -368,7 +384,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * ツリー構造を標準出力する
+	 * ツリー構造を標準出力する。
 	 * @param node 調査中のメソッド
 	 * @param time　ノードの深さ
 	 */
@@ -404,7 +420,7 @@ public class ForestModel {
 	}
 
 	/**
-	 * ノードのリストを応答する
+	 * ノードのリストを応答する。
 	 * @return nodes ノードの全リスト
 	 */
 	public ArrayList<Node> getNodes() {
