@@ -550,11 +550,25 @@ th {
             <th class="left-padding" abbr="5">テスト結果</th>
           </tr>
           <tr>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding">なし</td>
-            <td class="left-padding">なし</td>
+            <td class="left-padding"><code>forestController</code></td>
+            <td class="left-padding"><code>ForestController</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">制御を司るforestControllerのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestModel</code></td>
+            <td class="left-padding"><code>ForestModel</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">情報を握っているforestModelのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>offset</code></td>
+            <td class="left-padding"><code>Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">スクロール量としてPointのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
           </tr>
         </tbody>
       </table>
@@ -576,12 +590,67 @@ th {
             <th class="left-padding" abbr="5">テスト結果</th>
           </tr>
           <tr>
-            <td class="left-padding"><code><a href="../Program/index.html#Example-main">main(String[] arguments)</a></code></td>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">ForestView​(ForestModel aForestModel)</a></code></td>
             <td class="left-padding"><code>void</code></td>
-            <td class="left-padding"><code>public static</code></td>
-            <td class="left-padding">コマンドラインを引数として受け取り、…、…。</td>
-            <td class="left-padding">バグ（2010年7月21日）</td>
-            <td class="left-padding">良好（2010年7月21日）</td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">ForestView​(ForestModel aForestModel, ForestController aForestController)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">displayForest​(java.awt.Graphics aGraphics)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ノードのリストにある全てのノードを表示する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">paintComponent​(java.awt.Graphics aGraphics)</a></code></td>
+            <td class="left-padding"><code>java.awt.Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたグラフィクスに背景色（白色）でビュー全体を塗り、その後にモデルの内容物を描画する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">scrollAmount()</a></code></td>
+            <td class="left-padding"><code>java.awt.Point</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量（offsetの逆向きの大きさ）を応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">scrollBy​(java.awt.Point aPoint)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量を指定された座標分だけ相対スクロールする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">scrollAmount()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">スクロール量を指定された座標に設定（絶対スクロール）する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">toString()</a></code></td>
+            <td class="left-padding"><code>java.lang.String</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">update()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">ビューの全領域を再描画する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
           </tr>
         </tbody>
       </table>
@@ -606,11 +675,32 @@ th {
             <th class="left-padding" abbr="5">テスト結果</th>
           </tr>
           <tr>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding"><code>なし</code></td>
-            <td class="left-padding">なし</td>
-            <td class="left-padding">なし</td>
+            <td class="left-padding"><code>current</code></td>
+            <td class="left-padding"><code>java.awt.Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestModel</code></td>
+            <td class="left-padding"><code>ForestModel</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">情報を握っているModelのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>forestView</code></td>
+            <td class="left-padding"><code>ForestView</code></td>
+            <td class="left-padding"><code>protected</code></td>
+            <td class="left-padding">表示を司るViewのインスタンスを束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code>previous</code></td>
+            <td class="left-padding"><code>private java.awt.Point</code></td>
+            <td class="left-padding"><code>private</code></td>
+            <td class="left-padding">以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
           </tr>
         </tbody>
       </table>
@@ -632,12 +722,88 @@ th {
             <th class="left-padding" abbr="5">テスト結果</th>
           </tr>
           <tr>
-            <td class="left-padding"><code><a href="../Program/index.html#Example-main">main(String[] arguments)</a></code></td>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">ForestController()</a></code></td>
+            <td class="left-padding"><code></code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">インスタンスを生成して応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseClicked​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
             <td class="left-padding"><code>void</code></td>
-            <td class="left-padding"><code>public static</code></td>
-            <td class="left-padding">コマンドラインを引数として受け取り、…、…。</td>
-            <td class="left-padding">バグ（2010年7月21日）</td>
-            <td class="left-padding">良好（2010年7月21日）</td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたマウスイベントからマウスカーサの位置を獲得して、 モデル座標系でのクリック位置を割り出して標準出力に出力する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseDragged​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状を移動の形に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定すると共に、以前のマウスカーサの位置からの差分を計算する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseEntered​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseExited​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseMoved​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mousePressed​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseReleased​(java.awt.event.MouseEvent aMouseEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">マウスカーサの形状をデフォルトに戻し、指定されたマウスイベントからマウスカーサの位置を獲得して、 インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">mouseWheelMoved​(java.awt.event.MouseWheelEvent aMouseWheelEvent)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">何もしない。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">setForestModel​(ForestModel aForestModel)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたモデルをインスタンス変数forestModelに設定する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">setForestView​(ForestView aForestView)</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">指定されたビューをインスタンス変数forestViewに設定し、 ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
+          </tr>
+          <tr>
+            <td class="left-padding"><code><a href="../Program/index.html#Example-main">toString()</a></code></td>
+            <td class="left-padding"><code>void</code></td>
+            <td class="left-padding"><code>public</code></td>
+            <td class="left-padding">このインスタンスを文字列にして応答する。</td>
+            <td class="left-padding">良好（2019年7月22日）</td>
           </tr>
         </tbody>
       </table>
