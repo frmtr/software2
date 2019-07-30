@@ -18,32 +18,32 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 
 	/**
 	 * 情報を握っているModelのインスタンスを束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	protected ForestModel forestModel;
 
 	/**
 	 * 表示を司るViewのインスタンスを束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	protected ForestView forestView;
 
 	/**
 	 * 以前にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	private Point previous;
 
 	/**
 	 * 現在にマウスのボタンが押下された場所をPointのインスタンスとして束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	private Point current;
 
 	/**
 	 * インスタンスを生成して応答する。
 	 * すべてのインスタンス変数（forestModel, forestView, previous, current）をnull化する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public ForestController()
 	{
@@ -59,7 +59,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	 * 指定されたマウスイベントからマウスカーサの位置を獲得して、
 	 * モデル座標系でのクリック位置を割り出して標準出力に出力する。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseClicked(MouseEvent aMouseEvent)
 	{
@@ -75,7 +75,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	 * そして、その差分だけビューに対してスクロールを依頼し、その後にビューの再描画を依頼する。
 	 * 最後にインスタンス変数previousをインスタンス変数currentに更新する。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseDragged(MouseEvent aMouseEvent)
 	{
@@ -95,7 +95,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 何もしない。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseEntered(MouseEvent aMouseEvent)
 	{
@@ -105,7 +105,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 何もしない。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseExited(MouseEvent aMouseEvent)
 	{
@@ -115,7 +115,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 何もしない。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseMoved(MouseEvent aMouseEvent)
 	{
@@ -126,7 +126,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	 * マウスカーサの形状を十字に変化させ、指定されたマウスイベントからマウスカーサの位置を獲得して、
 	 * インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mousePressed(MouseEvent aMouseEvent)
 	{
@@ -142,7 +142,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	 * マウスカーサの形状をデフォルトに戻し、指定されたマウスイベントからマウスカーサの位置を獲得して、
 	 * インスタンス変数currentに設定する共にインスタンス変数previousをインスタンス変数currentに更新する。
 	 * @param aMouseEvent マウスイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseReleased(MouseEvent aMouseEvent)
 	{
@@ -157,7 +157,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 何もしない。
 	 * @param aMouseWheelEvent マウスホィールイベント
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void mouseWheelMoved(MouseWheelEvent aMouseWheelEvent)
 	{
@@ -167,7 +167,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * 指定されたモデルをインスタンス変数forestModelに設定する。
 	 * @param aForestModel このコントローラのモデル
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void setForestModel(ForestModel aForestModel)
 	{
@@ -179,8 +179,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	 * 指定されたビューをインスタンス変数forestViewに設定し、
 	 * ビューのマウスのリスナおよびモーションリスナそしてホイールリスナをこのコントローラにする。
 	 * @param aForestView このコントローラのビュー
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public void setForestView(ForestView aForestView)
 	{
@@ -194,7 +193,7 @@ public class ForestController extends MouseInputAdapter implements MouseWheelLis
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public String toString()
 	{
