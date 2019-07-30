@@ -20,7 +20,7 @@ public class ForestModel {
 
 	/**
 	 * 依存物（Observerデザインパターンの観測者）：Viewのインスタンスたちを束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	protected ArrayList<ForestView> dependents;
 
@@ -51,7 +51,7 @@ public class ForestModel {
 
 	/**
 	 * インスタンスを生成して初期化して応答する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 * @param aFile 受け取ったらファイル
 	 * @throws FileNotFoundException 指定されたパス名で示されるファイルが開けなかったことを通知
 	 */

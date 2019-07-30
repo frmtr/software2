@@ -17,19 +17,19 @@ public class ForestView extends JPanel{
 	/**
 	 * 情報を握っているforestModelのインスタンスを束縛する。
 	 * 束縛されるforestModelのインスタンスはpicture()というメッセージに応答できなければならない。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	protected ForestModel forestModel;
 
 	/**
 	 * 制御を司るforestControllerのインスタンスを束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	protected ForestController forestController;
 
 	/**
 	 * スクロール量としてPointのインスタンスを束縛する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	private Point offset;
 
@@ -37,8 +37,7 @@ public class ForestView extends JPanel{
 	 * インスタンスを生成して応答する。
 	 * 指定されたモデルの依存物となり、コントローラを作り、モデルとビューを設定し、スクロール量を(0, 0)に設定する。
 	 * @param aForestModel このビューのモデル
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public ForestView(ForestModel aForestModel)
 	{
@@ -57,8 +56,7 @@ public class ForestView extends JPanel{
 	 * 指定されたモデルの依存物となり、指定されたコントローラにモデルとビューを設定し、スクロール量を(0, 0)に設定する。
 	 * @param aForestModel このビューのモデル
 	 * @param aForestController このビューのコントローラ
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public ForestView(ForestModel aForestModel, ForestController aForestController)
 	{
@@ -76,7 +74,7 @@ public class ForestView extends JPanel{
 	 * 指定されたグラフィクスに背景色（明灰色）でビュー全体を塗り、その後にモデルの内容物を描画する。
 	 * それはスクロール量（offset）を考慮してモデル画像（picture）をペイン（パネル）内に描画することである。
 	 * @param aGraphics グラフィックス・コンテキスト
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void paintComponent(Graphics aGraphics)
 	{
@@ -123,8 +121,7 @@ public class ForestView extends JPanel{
 	/**
 	 * スクロール量（offsetの逆向きの大きさ）を応答する。
 	 * @return X軸とY軸のスクロール量を表す座標
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public Point scrollAmount()
 	{
@@ -136,8 +133,7 @@ public class ForestView extends JPanel{
 	/**
 	 * スクロール量を指定された座標分だけ相対スクロールする。
 	 * @param aPoint X軸とY軸のスクロール量を表す座標
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public void scrollBy(Point aPoint)
 	{
@@ -150,8 +146,7 @@ public class ForestView extends JPanel{
 	/**
 	 * スクロール量を指定された座標に設定（絶対スクロール）する。
 	 * @param aPoint X軸とY軸の絶対スクロール量を表す座標
-	 * 良好（2010年7月25日）
-	 * 修正（2015年2月9日）
+	 * 良好（2019年7月22日）
 	 */
 	public void scrollTo(Point aPoint)
 	{
@@ -162,7 +157,7 @@ public class ForestView extends JPanel{
 	/**
 	 * このインスタンスを文字列にして応答する。
 	 * @return 自分自身を表す文字列
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public String toString()
 	{
@@ -179,7 +174,7 @@ public class ForestView extends JPanel{
 
 	/**
 	 * ビューの全領域を再描画する。
-	 * 良好（2010年7月25日）
+	 * 良好（2019年7月22日）
 	 */
 	public void update()
 	{

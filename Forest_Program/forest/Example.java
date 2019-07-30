@@ -22,6 +22,7 @@ public class Example extends Object
 	 * ファイルチューザーでファイルを選択し、樹上整列を表示する準備をする
 	 * @param arguments 引数はなく実行できるので不要
 	 * @throws FileNotFoundException 指定されたパス名で示されるファイルが開けなかったことを通知
+	 * 良好（2019年7月22日）
 	 */
 	public static void main(String[] arguments) throws FileNotFoundException
 	{
